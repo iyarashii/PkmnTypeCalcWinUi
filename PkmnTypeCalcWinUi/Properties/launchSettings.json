@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PkmnTypeCalcWinUi (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PkmnTypeCalcWinUi (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
