@@ -9,7 +9,82 @@
     mc:Ignorable="d"
     Title="PkmnTypeCalcWinUi">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+
+    <Grid RowDefinitions="30,*">
+        <!-- Window content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <!--row 1-->
+            <TextBlock Grid.Row="1" Text="Primary Type" Grid.Column="1" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Text="Secondary Type" Grid.Column="2" HorizontalAlignment="Center"/>
+            <!--row 2-->
+
+            <!--Primary Type combobox-->
+            <!--<ComboBox Grid.Row="2" HorizontalAlignment="Center" Grid.Column="1" Margin="5" Items="{Binding PrimaryPkmnTypeList}" SelectedIndex="0"
+					  MaxDropDownHeight="1000" SelectedItem="{Binding SelectedPrimaryType}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding TypeName}" Foreground="{Binding TypeColor}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            --><!-- Secondary Type combobox --><!--
+            <ComboBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="5" Items="{Binding SecondaryPkmnTypeList}"
+					   SelectedIndex="0" 
+					  MaxDropDownHeight="1000" SelectedItem="{Binding SelectedSecondaryType}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding TypeName}" Foreground="{Binding TypeColor}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>-->
+
+            <!--row 3-->
+            <!--<DataGrid IsReadOnly="True" Height="650" IsVisible="{Binding CalculatedTableVisibility}"
+					  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Hidden"
+					  Items="{Binding PkmnTypeList}">
+                <DataGrid.Styles>
+                    <Style Selector="DataGridRow:selected /template/ Rectangle#BackgroundRectangle">
+                        <Setter Property="Opacity" Value="0"/>
+                    </Style>
+                    <Style Selector="DataGridRow">
+                        <Setter Property="IsHitTestVisible" Value="False"/>
+                    </Style>
+                </DataGrid.Styles>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Type" Width="*" SortMemberPath="TypeName">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="model:PkmnType">
+                                <TextBox Focusable="False" IsReadOnly="True" BorderThickness="0" 
+										 Foreground="{Binding TypeColor}" TextAlignment="Center" Text="{Binding TypeName}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Damage multiplier" Width="*" SortMemberPath="DmgMultiplier">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="model:PkmnType">
+                                <TextBox Focusable="False" IsReadOnly="True" BorderThickness="0" 
+										 Foreground="{Binding TypeColor}" TextAlignment="Center" 
+										 Text="{Binding DmgMultiplier, StringFormat='{}{0}x'}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>-->
+        </Grid>
+    </Grid>
 </Window>
