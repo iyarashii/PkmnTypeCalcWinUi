@@ -11,8 +11,8 @@
     xmlns:vm="using:PkmnTypeCalcWinUi.ViewModels"
     mc:Ignorable="d"
     Title="PkmnTypeCalcWinUi">
- 
-    <Grid x:Name="rootGrid" RowDefinitions="30,*">
+
+    <Grid x:Name="rootGrid" RowDefinitions="30,*" >
         <Grid.DataContext>
             <vm:MainWindowViewModel/>
         </Grid.DataContext>
@@ -65,9 +65,9 @@
             <controls:DataGrid IsReadOnly="True" Height="650" Visibility="{Binding CalculatedTableVisibility, 
                 Converter={StaticResource BooleanToVisibilityConverter}}"
 					  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Hidden"
-					  ItemsSource="{Binding PkmnTypeList}">
+					  ItemsSource="{Binding PkmnTypeList}" AutoGenerateColumns="False">
                 <controls:DataGrid.Columns>
-                    <controls:DataGridTemplateColumn Header="Type" Width="*" SortDirection="Ascending">
+                    <controls:DataGridTemplateColumn Header="Type" Width="*">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox IsReadOnly="True" BorderThickness="0" 
@@ -78,9 +78,11 @@
                     <controls:DataGridTemplateColumn Header="Damage multiplier" Width="*">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox IsReadOnly="True" BorderThickness="0" 
-										 Foreground="{Binding TypeColor}" TextAlignment="Center" 
-										 Text="{Binding DmgMultiplier}"/>
+                                <TextBlock
+                                    Foreground="{Binding TypeColor}" 
+                                    TextAlignment="Center">
+                                    <Run Text="{Binding DmgMultiplier}"/><Run Text="x"/>
+                                </TextBlock>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
