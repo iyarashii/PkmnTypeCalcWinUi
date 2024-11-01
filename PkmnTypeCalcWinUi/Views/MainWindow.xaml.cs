@@ -26,6 +26,8 @@ namespace PkmnTypeCalcWinUi
         public MainWindow()
         {
             this.InitializeComponent();
+            AppWindow.SetIcon(
+                Path.Combine(AppContext.BaseDirectory, "Assets/pokeball.ico"));
         }
     }
 }
