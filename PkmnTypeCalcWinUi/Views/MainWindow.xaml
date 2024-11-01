@@ -18,6 +18,9 @@
         </Grid.DataContext>
         <Grid.Resources>
             <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <Style TargetType="controls:DataGridRow">
+                <Setter Property="IsHitTestVisible" Value="False"/>
+            </Style>
         </Grid.Resources>
         <!-- Window content -->
         <Grid Grid.Row="1">
@@ -62,10 +65,16 @@
             </ComboBox>
 
             <!--row 3-->
-            <controls:DataGrid IsReadOnly="True" Height="650" Visibility="{Binding CalculatedTableVisibility, 
-                Converter={StaticResource BooleanToVisibilityConverter}}"
-					  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Hidden"
-					  ItemsSource="{Binding PkmnTypeList}" AutoGenerateColumns="False">
+            <controls:DataGrid 
+                IsReadOnly="True" 
+                Height="650" 
+                Visibility="{Binding CalculatedTableVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" 
+                Grid.Row="3" 
+                Grid.Column="1" 
+                Grid.ColumnSpan="2" 
+                VerticalScrollBarVisibility="Hidden" 
+                ItemsSource="{Binding PkmnTypeList}" 
+                AutoGenerateColumns="False">
                 <controls:DataGrid.Columns>
                     <controls:DataGridTemplateColumn Header="Type" Width="*">
                         <controls:DataGridTemplateColumn.CellTemplate>
