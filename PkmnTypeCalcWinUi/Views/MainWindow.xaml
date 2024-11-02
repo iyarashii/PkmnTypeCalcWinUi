@@ -66,6 +66,7 @@
 
             <!--row 3-->
             <controls:DataGrid 
+                AlternatingRowBackground="#0f0f0f"
                 IsReadOnly="True" 
                 Height="650" 
                 Visibility="{Binding CalculatedTableVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" 
