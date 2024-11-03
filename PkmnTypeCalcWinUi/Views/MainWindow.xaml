@@ -77,15 +77,23 @@
                 ItemsSource="{Binding PkmnTypeList}" 
                 AutoGenerateColumns="False">
                 <controls:DataGrid.Columns>
-                    <controls:DataGridTemplateColumn Header="Type" Width="*">
+                    <controls:DataGridTemplateColumn 
+                        Header="Type" 
+                        Width="*">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox IsReadOnly="True" BorderThickness="0" 
-										 Foreground="{Binding TypeColor}" TextAlignment="Center" Text="{Binding TypeName}"/>
+                                <TextBox 
+                                    IsReadOnly="True" 
+                                    BorderThickness="0" 
+                                    Foreground="{Binding TypeColor}" 
+                                    TextAlignment="Center" 
+                                    Text="{Binding TypeName}"/>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
-                    <controls:DataGridTemplateColumn Header="Damage multiplier" Width="*">
+                    <controls:DataGridTemplateColumn 
+                        Header="Damage multiplier" 
+                        Width="*">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock
