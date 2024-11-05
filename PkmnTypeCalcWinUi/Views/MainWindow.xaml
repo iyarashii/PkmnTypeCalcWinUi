@@ -51,6 +51,7 @@
                 Margin="5" 
                 ItemsSource="{Binding PrimaryPkmnTypeList, Mode=TwoWay}" 
                 SelectedIndex="0"
+                SelectionChanged="ComboBox_SelectionChanged"
                 MaxDropDownHeight="1000" 
                 SelectedItem="{Binding SelectedPrimaryType, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
@@ -62,7 +63,7 @@
 
              <!--Secondary Type combobox-->
             <ComboBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="5" ItemsSource="{Binding SecondaryPkmnTypeList}"
-					   SelectedIndex="0" 
+					   SelectedIndex="0"   SelectionChanged="ComboBox_SelectionChanged"
 					  MaxDropDownHeight="1000" SelectedItem="{Binding SelectedSecondaryType, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -73,6 +74,7 @@
 
             <!--row 3-->
             <controls:DataGrid 
+                x:Name="dmgCalcDataGrid"
                 AlternatingRowBackground="#0f0f0f"
                 IsReadOnly="True" 
                 Height="650" 
@@ -82,10 +84,14 @@
                 Grid.ColumnSpan="2" 
                 VerticalScrollBarVisibility="Hidden" 
                 ItemsSource="{Binding PkmnTypeList}" 
+                CanUserSortColumns="True"
+                CanUserReorderColumns="False"
+                Sorting="{x:Bind GetSortHandler()}"
                 AutoGenerateColumns="False">
                 <controls:DataGrid.Columns>
                     <controls:DataGridTemplateColumn 
                         Header="Type" 
+                        Tag="TypeName"
                         Width="*">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -99,7 +105,8 @@
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
                     <controls:DataGridTemplateColumn 
-                        Header="Damage multiplier" 
+                        Header="Damage multiplier"
+                        Tag="DmgMultiplier"
                         Width="*">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

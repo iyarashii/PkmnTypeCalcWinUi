@@ -1,11 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.WinUI.UI.Controls;
 using PokemonTypeLibrary.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PkmnTypeCalcWinUi.ViewModels
 {
@@ -17,6 +16,42 @@ namespace PkmnTypeCalcWinUi.ViewModels
         private bool calculatedTableVisibility;
         private ObservableCollection<IPkmnType> primaryPkmnTypeList = new(PkmnTypeFactory.GeneratePkmnTypeList());
         private ObservableCollection<IPkmnType> secondaryPkmnTypeList = new(PkmnTypeFactory.GeneratePkmnTypeList());
+        public IRelayCommand<DataGridColumnEventArgs> SortCommand { get; }
+
+        public MainWindowViewModel()
+        {
+            SortCommand = new RelayCommand<DataGridColumnEventArgs>(OnSortCommandExecuted);
+        }
+        private void OnSortCommandExecuted(DataGridColumnEventArgs e)
+        {
+            //Use the Tag property to pass the bound column name for the sorting implementation
+            if (e.Column.Tag.ToString() == nameof(PkmnType.TypeName))
+            {
+                if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
+                {
+                    PkmnTypeList = new ObservableCollection<IPkmnType>(PkmnTypeList.OrderBy(x => x.TypeName));
+                    e.Column.SortDirection = DataGridSortDirection.Ascending;
+                }
+                else
+                {
+                    PkmnTypeList = new ObservableCollection<IPkmnType>(PkmnTypeList.OrderByDescending(x => x.TypeName));
+                    e.Column.SortDirection = DataGridSortDirection.Descending;
+                }
+            }
+            else if (e.Column.Tag.ToString() == nameof(PkmnType.DmgMultiplier))
+            {
+                if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
+                {
+                    PkmnTypeList = new ObservableCollection<IPkmnType>(PkmnTypeList.OrderBy(x => x.DmgMultiplier));
+                    e.Column.SortDirection = DataGridSortDirection.Ascending;
+                }
+                else
+                {
+                    PkmnTypeList = new ObservableCollection<IPkmnType>(PkmnTypeList.OrderByDescending(x => x.DmgMultiplier));
+                    e.Column.SortDirection = DataGridSortDirection.Descending;
+                }
+            }
+        }
 
         public ObservableCollection<IPkmnType> PrimaryPkmnTypeList
         {
@@ -45,8 +80,12 @@ namespace PkmnTypeCalcWinUi.ViewModels
         public ObservableCollection<IPkmnType> PkmnTypeList
         {
             get => _pkmnTypeList;
-            set { SetProperty(ref _pkmnTypeList, value); }
+            set 
+            {
+                SetProperty(ref _pkmnTypeList, value); 
+            }
         }
+
         public IPkmnType SelectedPrimaryType
         {
             get => PrimaryPkmnTypeList.Where(type => type.TypeName == _selectedPrimaryType.TypeName).Single();
