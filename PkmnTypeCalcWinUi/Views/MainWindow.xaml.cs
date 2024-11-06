@@ -21,6 +21,21 @@ namespace PkmnTypeCalcWinUi
             AppWindow.SetIcon(
                 Path.Combine(AppContext.BaseDirectory, "Assets/pokeball.ico"));
         }
+
+        private void OnRootSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var elm = (FrameworkElement)sender;
+            elm.SizeChanged -= OnRootSizeChanged;
+
+            // Edit from original: account for scaling
+            var scale = elm.XamlRoot.RasterizationScale;
+            var height = (int)Math.Ceiling(elm.DesiredSize.Height * scale);
+            var width = (int)Math.Ceiling(elm.DesiredSize.Width * scale);
+
+            AppWindow.ResizeClient(new(width, height));
+            //Activate();
+        }
+
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClearDataGridSortDirections();
@@ -51,5 +66,7 @@ namespace PkmnTypeCalcWinUi
                 (rootGrid.DataContext as MainWindowViewModel).SortCommand.Execute(args);
             };
         }
+
+      
     }
 }

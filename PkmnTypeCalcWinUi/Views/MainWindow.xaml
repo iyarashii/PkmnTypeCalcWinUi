@@ -10,9 +10,13 @@
 	xmlns:model="clr-namespace:PokemonTypeLibrary.Models;assembly=PokemonTypeLibrary"
     xmlns:vm="using:PkmnTypeCalcWinUi.ViewModels"
     mc:Ignorable="d"
-    Title="PkmnTypeCalcWinUi">
+    Title="PkmnTypeCalcWinUi"
+    >
 
-    <Grid x:Name="rootGrid" RowDefinitions="30,*" >
+    <Grid 
+        x:Name="rootGrid"
+        SizeChanged="OnRootSizeChanged"  
+        RowDefinitions="30,*" >
         <Grid.DataContext>
             <vm:MainWindowViewModel/>
         </Grid.DataContext>
