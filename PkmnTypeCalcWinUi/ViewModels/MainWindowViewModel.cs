@@ -13,7 +13,7 @@ namespace PkmnTypeCalcWinUi.ViewModels
         public static string EmptyTypeName { get; } = PkmnTypeFactory.CreateEmptyPkmnType().TypeName;
         private ObservableCollection<IPkmnType> _pkmnTypeList = new(PkmnTypeFactory.GeneratePkmnTypeList().Where(x => x.TypeName != EmptyTypeName).ToList());
         private IPkmnType _selectedPrimaryType = PkmnTypeFactory.CreateEmptyPkmnType(), _selectedSecondaryType = PkmnTypeFactory.CreateEmptyPkmnType();
-        private bool calculatedTableVisibility;
+        private bool calculatedTableVisibility = false;
         private ObservableCollection<IPkmnType> primaryPkmnTypeList = new(PkmnTypeFactory.GeneratePkmnTypeList());
         private ObservableCollection<IPkmnType> secondaryPkmnTypeList = new(PkmnTypeFactory.GeneratePkmnTypeList());
         public IRelayCommand<DataGridColumnEventArgs> SortCommand { get; }

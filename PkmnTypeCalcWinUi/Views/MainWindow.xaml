@@ -15,8 +15,7 @@
 
     <Grid 
         x:Name="rootGrid"
-        SizeChanged="OnRootSizeChanged"  
-        RowDefinitions="30,*" >
+         >
         <Grid.DataContext>
             <vm:MainWindowViewModel/>
         </Grid.DataContext>
