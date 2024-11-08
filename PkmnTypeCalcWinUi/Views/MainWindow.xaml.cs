@@ -20,7 +20,7 @@ namespace PkmnTypeCalcWinUi
             InitializeComponent();
             AppWindow.SetIcon(
                 Path.Combine(AppContext.BaseDirectory, "Assets/pokeball.ico"));
-            AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(450, 130));
+            AppWindow.Resize(new Windows.Graphics.SizeInt32(450, 130));
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -28,11 +28,11 @@ namespace PkmnTypeCalcWinUi
             ClearDataGridSortDirections();
             if ((rootGrid.DataContext as MainWindowViewModel).CalculatedTableVisibility)
             {
-                AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(450, 750));
+                AppWindow.Resize(new Windows.Graphics.SizeInt32(450, 740));
             }
             else
             {
-                AppWindow.ResizeClient(new Windows.Graphics.SizeInt32(450, 130));
+                AppWindow.Resize(new Windows.Graphics.SizeInt32(450, 130));
             }
         }
 
