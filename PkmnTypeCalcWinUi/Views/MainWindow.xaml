@@ -21,6 +21,7 @@
         </Grid.DataContext>
         <Grid.Resources>
             <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <local:StringFormatConverter x:Key="StringFormatConverter"/>
             <Style TargetType="controls:DataGridRow">
                 <Setter Property="IsHitTestVisible" Value="False"/>
             </Style>
@@ -112,11 +113,14 @@
                         Width="*">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock
+                                <TextBox 
+                                    IsReadOnly="True" 
+                                    BorderThickness="0" 
                                     Foreground="{Binding TypeColor}" 
-                                    TextAlignment="Center">
-                                    <Run Text="{Binding DmgMultiplier}"/><Run Text="x"/>
-                                </TextBlock>
+                                    TextAlignment="Center" 
+                                    Text="{Binding DmgMultiplier, 
+                                        Converter={StaticResource StringFormatConverter}, 
+                                        ConverterParameter='{}{0}x'}"/>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
