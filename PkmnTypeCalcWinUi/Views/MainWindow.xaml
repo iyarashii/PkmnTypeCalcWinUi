@@ -43,8 +43,16 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
             <!--row 1-->
-            <TextBlock Grid.Row="1" Text="Primary Type" Grid.Column="1" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Text="Secondary Type" Grid.Column="2" HorizontalAlignment="Center"/>
+            <TextBlock 
+                Grid.Row="1" 
+                Text="Primary Type" 
+                Grid.Column="1" 
+                HorizontalAlignment="Center"/>
+            <TextBlock 
+                Grid.Row="1" 
+                Text="Secondary Type" 
+                Grid.Column="2" 
+                HorizontalAlignment="Center"/>
             <!--row 2-->
 
             <!--Primary Type combobox-->
@@ -60,18 +68,29 @@
                 SelectedItem="{Binding SelectedPrimaryType, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TypeName}" Foreground="{Binding TypeColor}"/>
+                        <TextBlock 
+                            Text="{Binding TypeName}" 
+                            Foreground="{Binding TypeColor}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
              <!--Secondary Type combobox-->
-            <ComboBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="5" ItemsSource="{Binding SecondaryPkmnTypeList}"
-					   SelectedIndex="0"   SelectionChanged="ComboBox_SelectionChanged"
-					  MaxDropDownHeight="1000" SelectedItem="{Binding SelectedSecondaryType, Mode=TwoWay}">
+            <ComboBox 
+                Grid.Row="2" 
+                Grid.Column="2" 
+                HorizontalAlignment="Center" 
+                Margin="5" 
+                ItemsSource="{Binding SecondaryPkmnTypeList}"
+                SelectedIndex="0"   
+                SelectionChanged="ComboBox_SelectionChanged"
+                MaxDropDownHeight="1000" 
+                SelectedItem="{Binding SelectedSecondaryType, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding TypeName}" Foreground="{Binding TypeColor}" />
+                        <TextBlock 
+                            Text="{Binding TypeName}" 
+                            Foreground="{Binding TypeColor}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
