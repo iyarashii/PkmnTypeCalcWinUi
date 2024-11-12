@@ -10,8 +10,7 @@
 	xmlns:model="clr-namespace:PokemonTypeLibrary.Models;assembly=PokemonTypeLibrary"
     xmlns:vm="using:PkmnTypeCalcWinUi.ViewModels"
     mc:Ignorable="d"
-    Title="PkmnTypeCalcWinUi"
-    >
+    Title="PkmnTypeCalcWinUi">
     <!-- Window content -->
     <Grid 
         x:Name="rootGrid"
