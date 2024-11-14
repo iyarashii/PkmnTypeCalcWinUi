@@ -11,8 +11,12 @@ namespace PkmnTypeCalcWinUi.ViewModels
     public class MainWindowViewModel : ObservableObject
     {
         public static string EmptyTypeName { get; } = PkmnTypeFactory.CreateEmptyPkmnType().TypeName;
-        private ObservableCollection<IPkmnType> _pkmnTypeList = new(PkmnTypeFactory.GeneratePkmnTypeList().Where(x => x.TypeName != EmptyTypeName).ToList());
-        private IPkmnType _selectedPrimaryType = PkmnTypeFactory.CreateEmptyPkmnType(), _selectedSecondaryType = PkmnTypeFactory.CreateEmptyPkmnType();
+        private ObservableCollection<IPkmnType> _pkmnTypeList =
+            new(PkmnTypeFactory.GeneratePkmnTypeList()
+                .Where(x => x.TypeName != EmptyTypeName)
+                .ToList());
+        private IPkmnType _selectedPrimaryType = PkmnTypeFactory.CreateEmptyPkmnType(),
+            _selectedSecondaryType = PkmnTypeFactory.CreateEmptyPkmnType();
         private bool calculatedTableVisibility = false;
         private ObservableCollection<IPkmnType> primaryPkmnTypeList = new(PkmnTypeFactory.GeneratePkmnTypeList());
         private ObservableCollection<IPkmnType> secondaryPkmnTypeList = new(PkmnTypeFactory.GeneratePkmnTypeList());
@@ -63,14 +67,14 @@ namespace PkmnTypeCalcWinUi.ViewModels
             }
         }
 
-        public ObservableCollection<IPkmnType> SecondaryPkmnTypeList 
+        public ObservableCollection<IPkmnType> SecondaryPkmnTypeList
         {
-            get => secondaryPkmnTypeList; 
-            set 
-            { 
-                secondaryPkmnTypeList = value; 
-                SetProperty(ref secondaryPkmnTypeList, value); 
-            } 
+            get => secondaryPkmnTypeList;
+            set
+            {
+                secondaryPkmnTypeList = value;
+                SetProperty(ref secondaryPkmnTypeList, value);
+            }
         }
         public bool CalculatedTableVisibility
         {
@@ -80,9 +84,9 @@ namespace PkmnTypeCalcWinUi.ViewModels
         public ObservableCollection<IPkmnType> PkmnTypeList
         {
             get => _pkmnTypeList;
-            set 
+            set
             {
-                SetProperty(ref _pkmnTypeList, value); 
+                SetProperty(ref _pkmnTypeList, value);
             }
         }
 
