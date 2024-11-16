@@ -1,7 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Data;
 using System;
 
-namespace PkmnTypeCalcWinUi
+namespace PkmnTypeCalcWinUi.Views.Converters
 {
     public class StringFormatConverter : IValueConverter
     {

@@ -9,6 +9,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
 	xmlns:model="clr-namespace:PokemonTypeLibrary.Models;assembly=PokemonTypeLibrary"
     xmlns:vm="using:PkmnTypeCalcWinUi.ViewModels"
+    xmlns:converters="using:PkmnTypeCalcWinUi.Views.Converters"
     mc:Ignorable="d"
     Title="PkmnTypeCalcWinUi">
     <!-- Window content -->
@@ -19,8 +20,8 @@
             <vm:MainWindowViewModel/>
         </Grid.DataContext>
         <Grid.Resources>
-            <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            <local:StringFormatConverter x:Key="StringFormatConverter"/>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <converters:StringFormatConverter x:Key="StringFormatConverter"/>
             <Style TargetType="controls:DataGridRow">
                 <Setter Property="IsHitTestVisible" Value="False"/>
             </Style>
