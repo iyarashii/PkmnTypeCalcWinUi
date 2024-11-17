@@ -120,15 +120,16 @@ namespace PkmnTypeCalcWinUi.ViewModels
         private IPkmnType? lastRemovedPrimaryType = null;
         private IPkmnType? lastRemovedSecondaryType = null;
         private List<IPkmnType> fullTypeList = PkmnTypeFactory.GeneratePkmnTypeList();
-        public void Calculate(string setType)
+
+        public void Calculate(string typeIdentifier)
         {
             // reset list state
-            if (lastRemovedPrimaryType != null)
+            if (lastRemovedPrimaryType != null && typeIdentifier != nameof(SelectedPrimaryType))
             {
                 PrimaryPkmnTypeList.Insert(fullTypeList.IndexOf(fullTypeList.Where(x => x.TypeName == lastRemovedPrimaryType.TypeName).Single()), lastRemovedPrimaryType);
                 lastRemovedPrimaryType = null;
             }
-            if (lastRemovedSecondaryType != null)
+            if (lastRemovedSecondaryType != null && typeIdentifier != nameof(SelectedSecondaryType))
             {
                 SecondaryPkmnTypeList.Insert(fullTypeList.IndexOf(fullTypeList.Where(x => x.TypeName == lastRemovedSecondaryType.TypeName).Single()), lastRemovedSecondaryType);
                 lastRemovedSecondaryType = null;
@@ -142,12 +143,12 @@ namespace PkmnTypeCalcWinUi.ViewModels
             }
 
             // remove already selected type from the other combobox
-            if (setType == nameof(SelectedPrimaryType) && _selectedPrimaryType.TypeName != EmptyTypeName)
+            if (typeIdentifier == nameof(SelectedPrimaryType) && _selectedPrimaryType.TypeName != EmptyTypeName)
             {
                 lastRemovedSecondaryType = SecondaryPkmnTypeList.Where(type => type.TypeName == _selectedPrimaryType.TypeName).Single();
                 SecondaryPkmnTypeList.Remove(lastRemovedSecondaryType);
             }
-            else if (setType == nameof(SelectedSecondaryType) && _selectedSecondaryType.TypeName != EmptyTypeName)
+            else if (typeIdentifier == nameof(SelectedSecondaryType) && _selectedSecondaryType.TypeName != EmptyTypeName)
             {
                 lastRemovedPrimaryType = PrimaryPkmnTypeList.Where(type => type.TypeName == _selectedSecondaryType.TypeName).Single();
                 PrimaryPkmnTypeList.Remove(lastRemovedPrimaryType);
