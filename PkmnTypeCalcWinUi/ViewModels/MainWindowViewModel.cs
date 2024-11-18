@@ -117,8 +117,8 @@ namespace PkmnTypeCalcWinUi.ViewModels
             }
         }
 
-        private IPkmnType? lastRemovedPrimaryType = null;
-        private IPkmnType? lastRemovedSecondaryType = null;
+        private IPkmnType lastRemovedPrimaryType = null;
+        private IPkmnType lastRemovedSecondaryType = null;
         private List<IPkmnType> fullTypeList = PkmnTypeFactory.GeneratePkmnTypeList();
 
         public void Calculate(string typeIdentifier)
