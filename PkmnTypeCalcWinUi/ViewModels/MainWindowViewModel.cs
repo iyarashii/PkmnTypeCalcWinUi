@@ -120,20 +120,21 @@ namespace PkmnTypeCalcWinUi.ViewModels
         private IPkmnType lastRemovedPrimaryType = null;
         private IPkmnType lastRemovedSecondaryType = null;
         private List<IPkmnType> fullTypeList = PkmnTypeFactory.GeneratePkmnTypeList();
+        private void ResetComboboxListState(IPkmnType lastRemovedType, string typeIdentifier,
+            string selectedTypeName, ObservableCollection<IPkmnType> typeList)
+        {
+            if (lastRemovedType != null && typeIdentifier != selectedTypeName)
+            {
+                typeList.Insert(fullTypeList.IndexOf(fullTypeList.Where(x => x.TypeName == lastRemovedType.TypeName).Single()), lastRemovedType);
+                lastRemovedType = null;
+            }
+        }
 
         public void Calculate(string typeIdentifier)
         {
             // reset list state
-            if (lastRemovedPrimaryType != null && typeIdentifier != nameof(SelectedPrimaryType))
-            {
-                PrimaryPkmnTypeList.Insert(fullTypeList.IndexOf(fullTypeList.Where(x => x.TypeName == lastRemovedPrimaryType.TypeName).Single()), lastRemovedPrimaryType);
-                lastRemovedPrimaryType = null;
-            }
-            if (lastRemovedSecondaryType != null && typeIdentifier != nameof(SelectedSecondaryType))
-            {
-                SecondaryPkmnTypeList.Insert(fullTypeList.IndexOf(fullTypeList.Where(x => x.TypeName == lastRemovedSecondaryType.TypeName).Single()), lastRemovedSecondaryType);
-                lastRemovedSecondaryType = null;
-            }
+            ResetComboboxListState(lastRemovedPrimaryType, typeIdentifier, nameof(SelectedPrimaryType), PrimaryPkmnTypeList);
+            ResetComboboxListState(lastRemovedSecondaryType, typeIdentifier, nameof(SelectedSecondaryType), SecondaryPkmnTypeList);
 
             // hide datagrid when both types are set to empty type
             if (_selectedPrimaryType.TypeName == EmptyTypeName && _selectedSecondaryType.TypeName == EmptyTypeName)
