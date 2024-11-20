@@ -144,16 +144,7 @@ namespace PkmnTypeCalcWinUi.ViewModels
             }
 
             // remove already selected type from the other combobox
-            if (typeIdentifier == nameof(SelectedPrimaryType) && _selectedPrimaryType.TypeName != EmptyTypeName)
-            {
-                lastRemovedSecondaryType = SecondaryPkmnTypeList.Where(type => type.TypeName == _selectedPrimaryType.TypeName).Single();
-                SecondaryPkmnTypeList.Remove(lastRemovedSecondaryType);
-            }
-            else if (typeIdentifier == nameof(SelectedSecondaryType) && _selectedSecondaryType.TypeName != EmptyTypeName)
-            {
-                lastRemovedPrimaryType = PrimaryPkmnTypeList.Where(type => type.TypeName == _selectedSecondaryType.TypeName).Single();
-                PrimaryPkmnTypeList.Remove(lastRemovedPrimaryType);
-            }
+            RemoveSelectedTypeFromOtherList(typeIdentifier);
 
             CalculatedTableVisibility = true;
 
@@ -165,6 +156,37 @@ namespace PkmnTypeCalcWinUi.ViewModels
 
             // sort by damage multiplier from highest to lowest
             PkmnTypeList = new(PkmnTypeList.OrderByDescending(x => x.DmgMultiplier));
+        }
+
+        private void RemoveSelectedTypeFromOtherList(string typeIdentifier)
+        {
+            ObservableCollection<IPkmnType> otherTypeList;
+            // this must be assigned to compile successfully
+            ref IPkmnType lastRemovedTypeInOtherList = ref lastRemovedPrimaryType;
+            IPkmnType selectedType;
+            switch (typeIdentifier)
+            {
+                case nameof(SelectedPrimaryType):
+                    selectedType = _selectedPrimaryType;
+                    otherTypeList = SecondaryPkmnTypeList;
+                    lastRemovedTypeInOtherList = ref lastRemovedSecondaryType;
+                    break;
+                case nameof(SelectedSecondaryType):
+                    selectedType = _selectedSecondaryType;
+                    otherTypeList = PrimaryPkmnTypeList;
+                    lastRemovedTypeInOtherList = ref lastRemovedPrimaryType;
+                    break;
+                default:
+                    return;
+            }
+
+            if (selectedType.TypeName != EmptyTypeName)
+            {
+                lastRemovedTypeInOtherList = otherTypeList
+                    .Where(type => type.TypeName == selectedType.TypeName)
+                    .Single();
+                otherTypeList.Remove(lastRemovedTypeInOtherList);
+            }
         }
     }
 }
