@@ -120,21 +120,39 @@ namespace PkmnTypeCalcWinUi.ViewModels
         private IPkmnType lastRemovedPrimaryType = null;
         private IPkmnType lastRemovedSecondaryType = null;
         private List<IPkmnType> fullTypeList = PkmnTypeFactory.GeneratePkmnTypeList();
-        private void ResetComboboxListState(IPkmnType lastRemovedType, string typeIdentifier,
-            string selectedTypeName, ObservableCollection<IPkmnType> typeList)
+        private void ResetComboboxListState(string typeIdentifier)
         {
-            if (lastRemovedType != null && typeIdentifier != selectedTypeName)
+            ObservableCollection<IPkmnType> otherTypeList;
+            // this must be assigned to compile successfully
+            ref IPkmnType lastRemovedTypeInOtherList = ref lastRemovedPrimaryType;
+            switch (typeIdentifier)
             {
-                typeList.Insert(fullTypeList.IndexOf(fullTypeList.Where(x => x.TypeName == lastRemovedType.TypeName).Single()), lastRemovedType);
-                lastRemovedType = null;
+                case nameof(SelectedPrimaryType):
+                    otherTypeList = SecondaryPkmnTypeList;
+                    lastRemovedTypeInOtherList = ref lastRemovedSecondaryType;
+                    break;
+                case nameof(SelectedSecondaryType):
+                    otherTypeList = PrimaryPkmnTypeList;
+                    lastRemovedTypeInOtherList = ref lastRemovedPrimaryType;
+                    break;
+                default:
+                    return;
+            }
+
+            if (lastRemovedTypeInOtherList != null)
+            {
+                var lastRemovedTypeName = lastRemovedTypeInOtherList.TypeName;
+                otherTypeList.Insert(fullTypeList.IndexOf(fullTypeList.Where(x => x.TypeName == lastRemovedTypeName).Single()), lastRemovedTypeInOtherList);
             }
         }
 
         public void Calculate(string typeIdentifier)
         {
             // reset list state
-            ResetComboboxListState(lastRemovedPrimaryType, typeIdentifier, nameof(SelectedPrimaryType), PrimaryPkmnTypeList);
-            ResetComboboxListState(lastRemovedSecondaryType, typeIdentifier, nameof(SelectedSecondaryType), SecondaryPkmnTypeList);
+            ResetComboboxListState(typeIdentifier);
+            
+            // remove already selected type from the other combobox
+            RemoveSelectedTypeFromOtherList(typeIdentifier);
 
             // hide datagrid when both types are set to empty type
             if (_selectedPrimaryType.TypeName == EmptyTypeName && _selectedSecondaryType.TypeName == EmptyTypeName)
@@ -142,9 +160,6 @@ namespace PkmnTypeCalcWinUi.ViewModels
                 CalculatedTableVisibility = false;
                 return;
             }
-
-            // remove already selected type from the other combobox
-            RemoveSelectedTypeFromOtherList(typeIdentifier);
 
             CalculatedTableVisibility = true;
 
@@ -187,6 +202,9 @@ namespace PkmnTypeCalcWinUi.ViewModels
                     .Single();
                 otherTypeList.Remove(lastRemovedTypeInOtherList);
             }
+            else
+                lastRemovedTypeInOtherList = null;
+
         }
     }
 }
