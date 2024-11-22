@@ -119,7 +119,7 @@ namespace PkmnTypeCalcWinUi.ViewModels
 
         private IPkmnType lastRemovedPrimaryType = null;
         private IPkmnType lastRemovedSecondaryType = null;
-        private List<IPkmnType> fullTypeList = PkmnTypeFactory.GeneratePkmnTypeList();
+        private readonly List<IPkmnType> fullTypeList = PkmnTypeFactory.GeneratePkmnTypeList();
         private void ResetComboboxListState(string typeIdentifier)
         {
             ObservableCollection<IPkmnType> otherTypeList;
