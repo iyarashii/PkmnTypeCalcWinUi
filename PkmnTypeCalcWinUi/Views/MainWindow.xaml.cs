@@ -18,6 +18,8 @@ namespace PkmnTypeCalcWinUi
         public MainWindow()
         {
             InitializeComponent();
+            // set title bar color to black
+            AppWindow.TitleBar.BackgroundColor = Windows.UI.Color.FromArgb(255, 0, 0, 0);
             AppWindow.SetIcon(
                 Path.Combine(AppContext.BaseDirectory, "Assets/pokeball.ico"));
             AppWindow.Resize(new Windows.Graphics.SizeInt32(450, 130));
