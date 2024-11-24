@@ -11,7 +11,7 @@
     xmlns:vm="using:PkmnTypeCalcWinUi.ViewModels"
     xmlns:converters="using:PkmnTypeCalcWinUi.Views.Converters"
     mc:Ignorable="d"
-    Title="PkmnTypeCalcWinUi">
+    Title="Pokemon Type Calculator - WinUI 3">
     <!-- Window content -->
     <Grid 
         x:Name="rootGrid"
