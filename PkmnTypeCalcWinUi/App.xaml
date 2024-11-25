@@ -11,6 +11,7 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <x:Int32 x:Key="ComboBoxPopupMaxNumberOfItems">18</x:Int32>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
