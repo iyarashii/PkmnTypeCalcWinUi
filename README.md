@@ -16,5 +16,6 @@ Other versions:
 - Blazor WASM - https://github.com/iyarashii/PkmnCalcBlazorWasm
 
 # Example screens
-Primary type selected:  
-![image](https://github.com/user-attachments/assets/5bf541df-d52f-4310-816b-30aa088fb612)
+Types selected:  
+![primary type selected](https://github.com/user-attachments/assets/5bf541df-d52f-4310-816b-30aa088fb612)
+![both types selected](https://github.com/user-attachments/assets/b3441191-56e5-4060-a1b3-2bb4a0c4090e)  
