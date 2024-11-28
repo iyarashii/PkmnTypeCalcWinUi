@@ -15,7 +15,7 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <SelfContained>true</SelfContained>
     <PublishSingleFile>true</PublishSingleFile>
-	<Copyright>Copyright © 2024 iyarashii</Copyright>
+    <Copyright>Copyright © 2024 iyarashii</Copyright>
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
