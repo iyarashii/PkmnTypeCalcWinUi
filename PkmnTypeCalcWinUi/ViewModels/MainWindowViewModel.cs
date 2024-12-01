@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PkmnTypeCalcWinUi.ViewModels
 {
-    public class MainWindowViewModel : ObservableObject
+    public partial class MainWindowViewModel : ObservableObject
     {
         public static string EmptyTypeName { get; } = PkmnTypeFactory.CreateEmptyPkmnType().TypeName;
         private ObservableCollection<IPkmnType> _pkmnTypeList =
